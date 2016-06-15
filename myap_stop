@@ -1,0 +1,4 @@
+#Stop hostapd
+sudo /etc/init.d/hostapd stop
+#Stop dhcp
+sudo /etc/init.d/dnsmasq stop

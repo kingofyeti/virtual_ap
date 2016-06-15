@@ -1,0 +1,25 @@
+#! /bin/sh
+
+#Set default eth0
+defautIface=eth0
+
+#Kill all hostapd
+sudo nmcli nm wifi off
+sudo rfkill unblock wlan
+sudo killall hostapd
+
+#Run hostapd
+sudo /etc/init.d/hostapd restart
+
+#Set DHCP
+sudo ifconfig wlan0 192.168.0.1 netmask 255.255.255.0 up
+#Restart DHCP server
+sudo /etc/init.d/dnsmasq restart
+
+#Iptable rule
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -F
+#sudo iptables -X
+#sudo iptables -t nat -F
+#sudo iptables -t nat -X
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
