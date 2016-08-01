@@ -1,0 +1,6 @@
+remember tips:
+
+1: /etc/init.d/hostapd rememder add CONFS
+2: main location is at /usr/sbin/hostapd! (replace it instead of apt-get remove)
+3: /etc/default/hostapd remember CONF !!!
+4: /etc/network/interfaces remember add static 
